@@ -74,9 +74,7 @@ def send_help(message):
 
 @bot.message_handler(commands=["about"])
 def send_about(message):
-    bot.send_message(message.chat.id, """
-This Is Nidusha Amarasinghe's Official Bot!
-Deverloper-@NidushaAmarasinghe
+    bot.send_message(message.chat.id, text="This Is Nidusha Amarasinghe's Official Bot!\nDeverloper-@NidushaAmarasinghe"
                                       """, parse_mode='Markdown')
 
 bot.polling()
