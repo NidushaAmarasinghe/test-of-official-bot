@@ -28,24 +28,6 @@ from os import getenv
 
 bot = telebot.TeleBot(getenv("BOT_TOKEN"))
 
-# HPB API
-response_API = requests.get('https://hpb.health.gov.lk/api/get-current-statistical')
-data = json.loads(response_API.text)
-local_new_cases     = str(data['data']['local_new_cases'])
-update_date_time    = str(data['data']['update_date_time'])
-local_new_cases     = str(data['data']['local_new_cases'])
-local_active_cases  = str(data['data']['local_active_cases'])
-local_total_cases   = str(data['data']['local_total_cases'])
-local_deaths        = str(data['data']['local_deaths'])
-local_recovered     = str(data['data']['local_recovered'])
-local_total_number_of_individuals_in_hospitals = str(data['data']['local_total_number_of_individuals_in_hospitals'])
-global_new_cases    = str(data['data']['global_new_cases'])
-global_total_cases  = str(data['data']['global_total_cases'])
-local_new_deaths    = str(data['data']['local_new_deaths'])
-global_deaths       = str(data['data']['global_deaths'])
-global_new_deaths   = str(data['data']['global_deaths'])
-global_recovered    = str(data['data']['global_recovered'])
-
 # /help command menu
 help = f"""
 Contact Help!\n@NidushaChat_Bot
@@ -53,16 +35,14 @@ Contact Help!\n@NidushaChat_Bot
 
 # Markup
 mark1 = telebot.types.InlineKeyboardMarkup()
-mark1.add(telebot.types.InlineKeyboardButton(text='🔁Updates🔁', url='https://t.me/szteambots'),
-          telebot.types.InlineKeyboardButton(text='🧑‍💻Support🧑‍💻', url='https://t.me/slbotzone')),
-          telebot.types.InlineKeyboardButton(text='➕Add Me To A Group➕', url='http://t.me/NidushaOfficial_Bot?startgroup=new')),
-mark1.add(telebot.types.InlineKeyboardButton(text='🛠️Deverloper🛠️', url='https://t.me/NidushaAmarasinghe')),
+mark1.add(telebot.types.InlineKeyboardButton(text='🔁Updates🔁', url='https://t.me/slaptap'),
+          telebot.types.InlineKeyboardButton(text='🧑‍💻Support🧑‍💻', url='https://t.me/slaptaps')),
+mark1.add(telebot.types.InlineKeyboardButton(text='➕Add Me To A Group➕', url="http://t.me/NidushaOfficial_Bot?startgroup=new")),
 mark1.add(telebot.types.InlineKeyboardButton(text='🔰Github🔰', url='https://github.com/NidushaAmarasinghe')),
 
 mark2 = telebot.types.InlineKeyboardMarkup()
-mark2.add(telebot.types.InlineKeyboardButton(text='🛠️Deverloper🛠️', url='https://t.me/NidushaAmarasinghe'),
-          telebot.types.InlineKeyboardButton(text='🔰Github🔰', url='https://github.com/NidushaAmarasinghe'))
-
+mark2.add(telebot.types.InlineKeyboardButton(text='➕Add Me To A Group➕', url="http://t.me/NidushaOfficial_Bot?startgroup=new"),
+          telebot.types.InlineKeyboardButton(text='🔰Github🔰', url='https://github.com/NidushaAmarasinghe')),
 # Commands
 @bot.message_handler(commands=['start'])
 def send_start(message):
@@ -75,6 +55,13 @@ def send_help(message):
 @bot.message_handler(commands=["about"])
 def send_about(message):
     bot.send_message(message.chat.id, text="This Is Nidusha Amarasinghe's Official Bot!\nDeverloper-@NidushaAmarasinghe"
-                                      """, parse_mode='Markdown')
+
+@bot.message_handler(commands=["alive"])
+def send_help(message):
+    bot.send_message(message.chat.id, text="Hey There! Bot Online now. 💃🏻\n♥️Developer: ɳιԃυαԋα αɱαɾαʂιɳɠԋҽ\nSupport: @SlapTaps\nThank You For Using Niduha Official Bot💞") 
+
+@bot.message_handler(commands=["stats"])
+def send_help(message):
+    bot.send_message(message.chat.id, text="💻System Stats💻\n⏳Uptime⏳:-  10 h: 8 m: 58 s.\n🔋Ram Usage🔋 :- 8%\n💾Disk Usage💾 :- 0.441") 
 
 bot.polling()
